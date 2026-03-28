@@ -53,19 +53,6 @@ a:hover {
   justify-content: center;
 }
 
-/* Images */
-.wedding {
-  background-image: url("1024_nylwfn_img_25b030765020c48ecf6598d7d654a507 (1).jpg");
-}
-
-.family {
-  background-image: url("1000_nylwfn_img_1e1f85de9cad09b8a499730f8f1c9312.jpg");
-}
-
-.birthday {
-  background-image: url("640_nylwfn_img_fc338f8a9f5c1cd944b724fad9155320.jpg");
-}
-
 /* Overlay */
 .overlay {
   position: absolute;
