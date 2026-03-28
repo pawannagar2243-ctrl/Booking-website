@@ -55,7 +55,7 @@ a:hover {
 
 /* Images */
 .wedding {
-  background-image: url("1024_nylwfn_img_25b030765020c48ecf6598d7d654a507.jpg");
+  background-image: url("1024_nylwfn_img_25b030765020c48ecf6598d7d654a507 (1).jpg");
 }
 
 .family {
@@ -205,5 +205,25 @@ a:hover {
 @media (max-width: 768px) {
   .map-section {
     margin-top: 0px; /* ✅ mobile me normal */
+  }
+}
+.event-card {
+  position: relative;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+  .event-card {
+    height: 250px;
+  }
+
+  .event-card h2 {
+    font-size: 20px;
   }
 }
