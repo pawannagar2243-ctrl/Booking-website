@@ -39,47 +39,61 @@ function Home() {
        </div>
 	</div>
     </section>
-		<section style={{ background: "#f5f5f5", padding: "60px 0" }}>
-	<div className="container-fluid px-0">
-      <div className="row g-0">
+	<section style={{ background: "#f5f5f5", padding: "60px 0" }}>
+	  <div className="container-fluid px-3 px-md-0">
+		<div className="row g-3">
 
-        {/* Card 1 */}
-        <div className="col-md-4">
-          <div className="event-card wedding">
-            <div className="overlay"></div>
-            <div className="content"data-aos-anchor-placement="top-bottom"data-aos="fade-down"data-aos-delay="100">
-              <h2>Wedding Event</h2>
-              <button className="btn-outline"><a className="nav-link text-white fs-4 align-items-center" href="/Contact"> Book A Day </a></button>
-            </div>
-          </div>
-        </div>
+		  {/* Card 1 */}
+		  <div className="col-12 col-md-4">
+			<div className="event-card wedding">
+			  <div className="overlay"></div>
+			  <div
+				className="content text-center"
+				data-aos="fade-down"
+				data-aos-delay="100"
+			  >
+				<h2>Wedding Event</h2>
+				<button className="btn-outline">
+				  <a href="/Contact" className="text-white text-decoration-none">
+					Book A Day
+				  </a>
+				</button>
+			  </div>
+			</div>
+		  </div>
 
-        {/* Card 2 */}
-        <div className="col-md-4">
-          <div className="event-card family">
-            <div className="overlay light"></div>
-            <div className="content dark" data-aos="fade-down">
-              <h2>Family Event</h2>
-              <button className="btn-dark-outline">
-			  <a className="nav-link text-black fs-4 align-items-center" href="/Contact"> Book A Day </a>
-			  </button>
-            </div>
-          </div>
-        </div>
+		  {/* Card 2 */}
+		  <div className="col-12 col-md-4">
+			<div className="event-card family">
+			  <div className="overlay light"></div>
+			  <div className="content dark text-center" data-aos="fade-down">
+				<h2>Family Event</h2>
+				<button className="btn-dark-outline">
+				  <a href="/Contact" className="text-black text-decoration-none">
+					Book A Day
+				  </a>
+				</button>
+			  </div>
+			</div>
+		  </div>
 
-        {/* Card 3 */}
-        <div className="col-md-4">
-          <div className="event-card birthday">
-            <div className="overlay"></div>
-            <div className="content" data-aos="fade-down">
-              <h2>Birthday Party</h2>
-              <button className="btn-outline"><a className="nav-link text-white fs-4 align-items-center" href="/Contact"> Book A Day </a></button>
-            </div>
-          </div>
-        </div>
+		  {/* Card 3 */}
+		  <div className="col-12 col-md-4">
+			<div className="event-card birthday">
+			  <div className="overlay"></div>
+			  <div className="content text-center" data-aos="fade-down">
+				<h2>Birthday Party</h2>
+				<button className="btn-outline">
+				  <a href="/Contact" className="text-white text-decoration-none">
+					Book A Day
+				  </a>
+				</button>
+			  </div>
+			</div>
+		  </div>
 
-      </div>
-    </div>
+		</div>
+	  </div>
 	</section>
   <section className="py-5"style={{ background: "#f5f5f5"}}>
       <div className="container-fluid">
