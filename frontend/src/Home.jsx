@@ -45,7 +45,7 @@ function Home() {
 
 		  {/* Card 1 */}
 		  <div className="col-12 col-md-4">
-			<div className="event-card wedding">
+			<div className="event-card"style={{ backgroundImage: 'url("1024_nylwfn_img_25b030765020c48ecf6598d7d654a507 (1).jpg")' }}>
 			  <div className="overlay"></div>
 			  <div
 				className="content text-center"
@@ -64,7 +64,7 @@ function Home() {
 
 		  {/* Card 2 */}
 		  <div className="col-12 col-md-4">
-			<div className="event-card family">
+			<div className="event-card family"style={{ backgroundImage: 'url("1000_nylwfn_img_1e1f85de9cad09b8a499730f8f1c9312.jpg")' }}>
 			  <div className="overlay light"></div>
 			  <div className="content dark text-center" data-aos="fade-down">
 				<h2>Family Event</h2>
@@ -79,7 +79,7 @@ function Home() {
 
 		  {/* Card 3 */}
 		  <div className="col-12 col-md-4">
-			<div className="event-card birthday">
+			<div className="event-card"style={{ backgroundImage: 'url("640_nylwfn_img_fc338f8a9f5c1cd944b724fad9155320.jpg")'}}>
 			  <div className="overlay"></div>
 			  <div className="content text-center" data-aos="fade-down">
 				<h2>Birthday Party</h2>
