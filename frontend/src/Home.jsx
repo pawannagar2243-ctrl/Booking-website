@@ -39,6 +39,7 @@ function Home() {
        </div>
 	</div>
     </section>
+		<section style={{ background: "#f5f5f5", padding: "60px 0" }}>
 	<div className="container-fluid px-0">
       <div className="row g-0">
 
@@ -79,6 +80,7 @@ function Home() {
 
       </div>
     </div>
+	</section>
   <section className="py-5"style={{ background: "#f5f5f5"}}>
       <div className="container-fluid">
         <div className="row align-items-center">
