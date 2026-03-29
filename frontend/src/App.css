@@ -1,6 +1,7 @@
 body {
   overflow-x: hidden;
 }
+
 img {
   max-width: 100%;
   height: auto;
@@ -52,7 +53,6 @@ a:hover {
   align-items: center;
   justify-content: center;
 }
-
 /* Overlay */
 .overlay {
   position: absolute;
@@ -194,23 +194,16 @@ a:hover {
     margin-top: 0px; /* ✅ mobile me normal */
   }
 }
+
 .event-card {
-  position: relative;
-  height: 350px;
+  width: 100%;        /* ✅ full responsive */
+  height: 300px;
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-/* Mobile fix */
+/* Mobile pe height thodi kam */
 @media (max-width: 768px) {
   .event-card {
-    height: 250px;
-  }
-
-  .event-card h2 {
-    font-size: 20px;
+    height: 220px;   /* ✅ only height change */
   }
 }
