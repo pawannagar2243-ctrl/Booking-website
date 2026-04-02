@@ -218,13 +218,14 @@ const handleSubmit = async (e) => {
 	<section className="map-section">
 	  <div className="container-fluid p-0">
 		<iframe
-		  src="https://www.google.com/maps?q=Alawa,Rajasthan&output=embed"
-		  loading="lazy"
-		  width="100%"
-		  height="400"
-		  style={{ border: 0 }}
-		  allowFullScreen=""
-		></iframe>
+		  <iframe
+			  src="https://www.google.com/maps?q=24.4339432,75.9863679&output=embed"
+			  width="100%"
+			  height="400"
+			  style={{ border: 0 }}
+			  allowFullScreen=""
+			  loading="lazy"
+			></iframe>
 	  </div>
 	</section>
 	</>
