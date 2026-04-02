@@ -142,12 +142,12 @@ const handleSubmit = async (e) => {
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaPhoneAlt color="#ff7a59" />
-                (+44) 445 444 49
+                (+91) 8239537689
               </p>
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaEnvelope color="#ff7a59" />
-                mail@yourmail.com
+                pawannagar2243@gmail.com
               </p>
 
             </div>
@@ -218,7 +218,7 @@ const handleSubmit = async (e) => {
 	<section className="map-section">
 	  <div className="container-fluid p-0">
 		<iframe
-		  src="https://www.google.com/maps?q=Griffith+Observatory&output=embed"
+		  src="https://www.google.com/maps?q=Alawa,Rajasthan&output=embed"
 		  loading="lazy"
 		  width="100%"
 		  height="400"
