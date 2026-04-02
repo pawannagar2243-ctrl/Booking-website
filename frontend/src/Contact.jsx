@@ -8,6 +8,7 @@ import axios from "axios";
 import Toast from "./Toast";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SEO from "./SEO";
 function Contact() {
 
   const [toast, setToast] = useState(null);
@@ -38,7 +39,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await fetch("https://booking-website-1-oq4p.onrender.com/contact", {
+    const res = await fetch("http://localhost:5000/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,12 +66,16 @@ const handleSubmit = async (e) => {
 	}
 
 	  } catch (error) {
-		console.error("Frontend Error:", error); // ✅ network / server error
-		
-	  }
+      showToast("Server error ❌", "error");
+      }  
 	};
   return (
     <>
+	<SEO 
+	  title="Magic of the moment|Contact Us"
+	  description="Get in touch with us for wedding, birthday, and family photography bookings. Contact our professional photography team today."
+	/>
+	
 	{toast && (
 	  <Toast
 		message={toast.message}
@@ -103,12 +108,12 @@ const handleSubmit = async (e) => {
           ></div>
 
           {/* Text */}
-          <h1 
+          <h2 
             className="text-white"
             style={{ fontSize: "30px",fontFamily: "serif"}}
           >
             Contact Us
-          </h1>
+          </h2>
 
         </div>
 
@@ -124,9 +129,9 @@ const handleSubmit = async (e) => {
             style={{ background: "#ffff" }}
             
           >
-            <h1 style={{ color: "#ff7a59",fontWeight:"bold", fontSize: "48px", fontFamily: "serif" }}>
+            <h2 style={{ color: "#ff7a59",fontWeight:"bold", fontSize: "48px", fontFamily: "serif" }}>
               Let's Get In Touch
-            </h1>
+            </h2>
 
             <div className="mt-4"data-aos="fade-right">
 
@@ -154,9 +159,9 @@ const handleSubmit = async (e) => {
             style={{ background: "#FF8A65" }}
             data-aos="fade-left"
           >
-            <h1 className="text-white text-center mb-3"style={{fontWeight:"bold",fontFamily: "serif"}}>
+            <h2 className="text-white text-center mb-3"style={{fontWeight:"bold",fontFamily: "serif"}}>
               Leave A Message
-            </h1>
+            </h2>
 
             <p className="text-white text-center mb-4">
                Sed ut perspiciatis unde omnis iste natus <br />error sit voluptatem accusantium<br /> doloremque.
@@ -165,7 +170,7 @@ const handleSubmit = async (e) => {
             <form onSubmit={handleSubmit}>
               <div className="row mb-3">
                 <div className="col" data-aos="fade-down">
-                  <label className="mb-3">First name</label>
+                 <label htmlFor="firstName">First Name</label>
                   <input name="firstName" onChange={handleChange} value={formData.firstName}  className="form-control" />
                 </div>
 
@@ -214,11 +219,11 @@ const handleSubmit = async (e) => {
 	  <div className="container-fluid p-0">
 		<iframe
 		  src="https://www.google.com/maps?q=Griffith+Observatory&output=embed"
+		  loading="lazy"
 		  width="100%"
 		  height="400"
 		  style={{ border: 0 }}
 		  allowFullScreen=""
-		  loading="lazy"
 		></iframe>
 	  </div>
 	</section>
