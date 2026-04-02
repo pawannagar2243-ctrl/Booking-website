@@ -3,6 +3,7 @@ import React, {useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SEO from "./SEO";
 function Home() {
   const [play, setPlay] = useState(false);
 	 useEffect(() => {
@@ -14,41 +15,45 @@ function Home() {
 	}, []);
   return (
     <>
+	<SEO
+        title=" Magic of the moment | Home"
+        description="Best photographer for weddings, birthday parties and events."
+      />
 	<section
-	  className="d-flex align-items-center justify-content-center text-center text-white"
-	  style={{
-		minHeight: "400px",   // ✅ fixed height hata
-		padding: "60px 0",    // ✅ mobile spacing
-		backgroundImage:
-		  "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('professional-camera-close-up-photographer-s-desktop-blurred-background.webp')",
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-	  }}
-	>
-      <div className="container px-3" style={{fontFamily: "serif"}}>
-        <h1 className="fw-bold display-1 display-md-1">
-          Capture Your Precious Moments With Us
-        </h1>
-        
-       <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
-		  <button className="btn-dark-outline-1">
-			<a className="nav-link text-white fs-4 align-items-center" href="/Contact"> Book A Day </a>
-		  </button>
-		  <button
-			className=" px-4 py-2 border btn-outline w-"
-			style={{ }}
-		  >
-			<a className="nav-link fs-4 " href="/Gallery"> See Gallery </a>
-		  </button>
-       </div>
-	</div>
+		  className="d-flex align-items-center justify-content-center text-center text-white"
+		  style={{
+			minHeight: "400px",   // ✅ fixed height hata
+			padding: "60px 0",    // ✅ mobile spacing
+			backgroundImage:
+			  "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('professional-camera-close-up-photographer-s-desktop-blurred-background.webp')",
+			backgroundSize: "cover",
+			backgroundPosition: "center",
+		  }}
+		>
+		  <div className="container px-3" style={{fontFamily: "serif"}}>
+			<h1 className="fw-bold display-1 display-md-1">
+			  Capture Your Precious Moments With Us
+			</h1>
+			
+		   <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
+			  <button className="btn-dark-outline-1">
+				<a className="nav-link text-white fs-4 align-items-center" href="/Contact"> Book A Day </a>
+			  </button>
+			  <button
+				className=" px-4 py-2 border btn-outline w-"
+				style={{ }}
+			  >
+				<a className="nav-link fs-4 " href="/Gallery"> See Gallery </a>
+			  </button>
+		   </div>
+		</div>
     </section>
 	<div className="container-fluid px-0 pe-0">
 	  <div className="row g-0">
 
 		{/* Card 1 */}
 		<div className="col-12 col-md-4">
-		  <div className="event-card" style={{backgroundImage: 'url("https://github.com/pawannagar2243-ctrl/Booking-website/blob/main/frontend/public/1024_nylwfn_img_25b030765020c48ecf6598d7d654a507.jpg?raw=true")'}}>
+		  <div className="event-card" style={{backgroundImage: 'url("1024_nylwfn_img_25b030765020c48ecf6598d7d654a507 (1).jpg")'}}>
 			<div className="overlay"></div>
 			<div
 			  className="content text-center"
@@ -130,7 +135,7 @@ function Home() {
           <div className="col-12 col-lg-6"data-aos="fade-left">
             <img
               src="photography-studio.webp"
-              alt="studio"
+              alt="Photography studio setup"
               className="img-fluid"
             />
           </div>
@@ -264,7 +269,7 @@ function Home() {
           >
             <img
               src="Video.webp"
-              alt="video"
+              alt="Wedding video preview"
               className="img-fluid rounded"
             />
 
@@ -334,7 +339,7 @@ function Home() {
         <div className="text-center"data-aos="zoom-in" style={{marginTop:"-35px"}}>
           <img
             src="example13.webp"
-            alt="user"
+            alt="Client Ann Smith"
             className="rounded-circle"
             style={{
               width: "60px",
