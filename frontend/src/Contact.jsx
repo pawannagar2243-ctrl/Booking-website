@@ -217,7 +217,6 @@ const handleSubmit = async (e) => {
     </section>
 	<section className="map-section">
 	  <div className="container-fluid p-0">
-		<iframe
 		  <iframe
 			  src="https://www.google.com/maps?q=24.4339432,75.9863679&output=embed"
 			  width="100%"
