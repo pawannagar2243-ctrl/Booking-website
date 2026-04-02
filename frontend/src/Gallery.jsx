@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SEO from "./SEO";
 function Gallery() {
 
   
@@ -15,6 +16,10 @@ function Gallery() {
 }, []);
   return (
     <>
+	<SEO 
+	  title="Magic of the moment |Gallery "
+	  description="Explore our photography gallery including weddings, family and studio shoots."
+	/>
      <section
       className="d-flex align-items-center"
       style={{
@@ -67,7 +72,7 @@ function Gallery() {
 		  <div className="col-12 col-md-4" data-aos="zoom-in-right">
 			<img
 			  src="unsplash-image (4).webp"
-			  alt=""
+			   alt="wedding photoshoot couple" loading="lazy"
 			  className="img-fluid w-100"
 			  style={{ height: "250px", objectFit: "cover" }}
 			/>
@@ -77,7 +82,7 @@ function Gallery() {
 		  <div className="col-12 col-md-4" data-aos="zoom-in-up">
 			<img
 			  src="unsplash-image (5).webp"
-			  alt=""
+			  alt="wedding photoshoot couple" loading="lazy"
 			  className="img-fluid w-100"
 			  style={{ height: "250px", objectFit: "cover" }}
 			/>
@@ -87,7 +92,7 @@ function Gallery() {
 		  <div className="col-12 col-md-4" data-aos="zoom-in-left">
 			<img
 			  src="unsplash-image (3).webp"
-			  alt=""
+			  alt="wedding photoshoot couple" loading="lazy"
 			  className="img-fluid w-100"
 			  style={{ height: "250px", objectFit: "cover" }}
 			/>
@@ -113,7 +118,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image (2).webp"
-				  alt=""
+				  alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -124,7 +129,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i7j2pd.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -135,7 +140,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i7iabi.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -146,7 +151,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i7hy0i.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -156,7 +161,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i7h6ll.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -167,7 +172,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i7gtcl.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -178,7 +183,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i7ghe4.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -189,14 +194,14 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i7g6s6.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
 			</div>
 			<div className="d-flex justify-content-center" >
 		  <button className="btn-dark-outline-2"data-aos="zoom-in">
-			<a className="nav-link text-white fs-4 align-items-center" href="/Contact"> Contact Us</a>
+			<a href="/Contact" className="nav-link text-white" aria-label="Go to contact page">Contact</a>
 		  </button>
        </div>
 		  </div>
@@ -219,7 +224,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i83goh.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -230,7 +235,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i837nx.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -241,7 +246,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i82mcm.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -252,7 +257,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i81pl8.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -262,7 +267,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i81jbo.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -273,7 +278,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i80v4h.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -284,7 +289,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i80pp3.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
@@ -295,7 +300,7 @@ function Gallery() {
 			  <div className="img-box">
 				<img
 				  src="unsplash-image-l7i80ggk.jpg"
-				  alt=""
+				   alt="wedding photoshoot couple" loading="lazy"
 				  className="img-fluid w-100"
 				/>
 			  </div>
