@@ -53,7 +53,7 @@ function Home() {
 
 		{/* Card 1 */}
 		<div className="col-12 col-md-4">
-		  <div className="event-card" style={{backgroundImage: 'url("1024_nylwfn_img_25b030765020c48ecf6598d7d654a507 (1).jpg")'}}>
+		  <div className="event-card" style={{backgroundImage: 'url("https://github.com/pawannagar2243-ctrl/Booking-website/blob/main/frontend/public/1024_nylwfn_img_25b030765020c48ecf6598d7d654a507.jpg?raw=true")'}}>
 			<div className="overlay"></div>
 			<div
 			  className="content text-center"
