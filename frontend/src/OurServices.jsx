@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SEO from "./SEO";
 function OurServices() {
 
   
@@ -15,6 +16,10 @@ function OurServices() {
 }, []);
   return (
     <>
+	<SEO 
+	  title="Magic of the moment|Our Services"
+	  description="Get in touch with us for wedding, birthday, and family photography bookings. Contact our professional photography team today."
+	/>
      <section
       className="d-flex align-items-center"
       style={{
