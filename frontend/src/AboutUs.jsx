@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SEO from "./SEO";
 function AboutUs() {
       const [years, setYears] = useState(0);
 	  const [team, setTeam] = useState(0);
@@ -37,10 +38,15 @@ function AboutUs() {
 }, []);
   return (
     <>
+	 <SEO
+        title="Magic of the moment|About Us"
+        description="Learn more about our photography services and team."
+      />
      <section
       className="d-flex align-items-center"
       style={{
-        height: "400px",
+       minHeight: "400px",
+       padding: "60px 0",
         backgroundImage:
           "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('1620_nylwfn_img_b9c500aba9f8c3135ff783f3e3d8f0f9.webp')",
         backgroundSize: "cover",
@@ -167,7 +173,7 @@ function AboutUs() {
                 >
                   <img
                     src="download 5.svg"
-                    alt=""
+                    alt="quote icon"
                     className="rounded-circle"
                     style={{ width: "30px", height: "30px" }}
                   />
