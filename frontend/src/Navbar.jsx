@@ -15,7 +15,7 @@ function App() {
 
           {/* LOGO */}
           <div className="d-flex align-items-center">
-            <img src="download2.svg" style={{ width: "50px" }} />
+            <img src="download2.svg" alt="Photographer Logo"style={{ width: "50px" }} />
             <span className="ms-2 fw-bold fs-4">Photographer</span>
           </div>
 
