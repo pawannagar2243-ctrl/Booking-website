@@ -145,7 +145,7 @@ const handleSubmit = async (e) => {
                 (+91) 8239537689
               </p>
 
-              <p className="d-flex align-items-center gap-2 fs-5">
+              <p className="d-flex align-items-center gap-3 ">
                 <FaEnvelope color="#ff7a59" />
                 pawannagar2243@gmail.com
               </p>
