@@ -175,7 +175,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div className="col" data-aos="fade-down" data-aos-delay="100">
-                  <label className="mb-3">Last Name</label>
+                  <label htmlFor="lastName">Last Name</label>
                   <input name="lastName" onChange={handleChange}value={formData.lastName} className="form-control" />
                 </div>
               </div>
