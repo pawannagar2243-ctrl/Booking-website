@@ -125,7 +125,7 @@ const handleSubmit = async (e) => {
 
           {/* LEFT SIDE */}
           <div
-            className="col-md-6 d-flex flex-column justify-content-center p-5"
+            className="col-md-6 d-flex flex-column justify-content-center p-3"
             style={{ background: "#ffff" }}
             
           >
