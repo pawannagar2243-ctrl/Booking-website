@@ -1,7 +1,7 @@
 import './App.css'
 import AOS from "aos";
 import "aos/dist/aos.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SEO from "./SEO";
 function AboutUs() {
@@ -9,24 +9,50 @@ function AboutUs() {
 	  const [team, setTeam] = useState(0);
 	  const [clients, setClients] = useState(0);
 
-  useEffect(() => {
-    let y = 0, t = 0, c = 0;
+   const sectionRef = useRef(null);
+   const lastScrollY = useRef(window.scrollY);
 
-    const interval = setInterval(() => {
-      if (y < 10) y++;
-      if (t < 20) t++;
-      if (c < 500) c += 10;
+ useEffect(() => {
+    let interval;
 
-      setYears(y);
-      setTeam(t);
-      setClients(c);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-      if (y >= 10 && t >= 20 && c >= 500) {
+      const isScrollingDown = currentScrollY > lastScrollY.current;
+      lastScrollY.current = currentScrollY;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const isVisible =
+        rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isScrollingDown && isVisible) {
+        // restart animation every time scroll down
         clearInterval(interval);
-      }
-    }, 50);
 
-    return () => clearInterval(interval);
+        let y = 0, t = 0, c = 0;
+
+        interval = setInterval(() => {
+          if (y < 10) y++;
+          if (t < 20) t++;
+          if (c < 500) c += 10;
+
+          setYears(y);
+          setTeam(t);
+          setClients(c);
+
+          if (y >= 10 && t >= 20 && c >= 500) {
+            clearInterval(interval);
+          }
+        }, 50);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(interval);
+    };
   }, []);
   
    useEffect(() => {
@@ -118,7 +144,7 @@ function AboutUs() {
         </div>
       </div>
     </section>
-	<section style={{ background: "#ff7a59", padding: "50px 0" }}data-aos="fade-up">
+	<section ref={sectionRef} style={{ background: "#ff7a59", padding: "50px 0" }}data-aos="fade-up">
       <div className="container">
         <div className="row text-center text-white">
 
