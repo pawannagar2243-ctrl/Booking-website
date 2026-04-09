@@ -133,7 +133,7 @@ const handleSubmit = async (e) => {
               Let's Get In Touch
             </h2>
 
-            <div className="mt-4"data-aos="fade-right">
+            <div className="mt-4 w-100"data-aos="fade-right">
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaMapMarkerAlt color="#ff7a59" />
@@ -145,8 +145,8 @@ const handleSubmit = async (e) => {
                 (+91) 8239537689
               </p>
 
-              <p className="d-flex align-items-center gap-3 fs-4 w-100">
-                <FaEnvelope color="#ff7a59" />
+              <p className="d-flex align-items-center gap-3">
+                <FaEnvelope color="#ff7a59"className="fs-5" />
                 pawannagar2243@gmail.com
               </p>
 
