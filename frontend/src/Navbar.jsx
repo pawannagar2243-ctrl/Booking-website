@@ -56,7 +56,7 @@ function Navbar() {
       {/* MOBILE POPUP MENU */}
       {open && (
         <div
-		  className="position-fixed top-0 end-0 w-100 h-100 text-black d-flex flex-column"
+		  className="position-fixed top-0 end-0 w-50 h-50 text-black d-flex flex-column"
 		  style={{ background: "#fff", zIndex: 999 }}
 		>
 
