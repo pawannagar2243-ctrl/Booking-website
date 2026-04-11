@@ -45,7 +45,6 @@ const handleSubmit = async (e) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-	 console.log(formData);
     });
  console.log("Response status:", res.status); // 👈 ADD
     const data = await res.json();
