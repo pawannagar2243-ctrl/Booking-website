@@ -38,6 +38,14 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  console.log("Submitting:", formData); // 👈 DEBUG
+
+  // ✅ REQUIRED FIELD CHECK
+  if (!formData.firstName || !formData.email || !formData.message) {
+    showToast("Please fill required fields ❌", "error");
+    return;
+  }
+
   try {
     const res = await fetch("https://booking-website-1-oq4p.onrender.com/contact", {
       method: "POST",
@@ -46,31 +54,29 @@ const handleSubmit = async (e) => {
       },
       body: JSON.stringify(formData),
     });
- console.log("Response status:", res.status); // 👈 ADD
+
     const data = await res.json();
-	   console.log("Response data:", data); // 👈 ADD
+    console.log("Response data:", data);
 
-	  if (data.success) {
-	showToast("Message Sent ✅", "success");
+    if (data.success) {
+      showToast("Message Sent ✅", "success");
 
-	  // 🔥 FORM RESET
-	  setFormData({
-		firstName: "",
-		lastName: "",
-		subject: "",
-		email: "",
-		message: "",
-	  });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        subject: "",
+        email: "",
+        message: "",
+      });
+    } else {
+      showToast(data.msg || "Error ❌", "error");
+    }
 
-	} else {
-	showToast("Error ❌", "error");
-	}
-
-	  } catch (error) {
-	  console.log("Error:", error); // 👈 ADD
-      showToast("Server error ❌", "error");
-      }  
-	};
+  } catch (error) {
+    console.log("Error:", error);
+    showToast("Server error ❌", "error");
+  }
+};
   return (
     <>
 	<SEO 
@@ -189,7 +195,14 @@ const handleSubmit = async (e) => {
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="300">
                 <label className="mb-3">Your e-mail:</label>
-                <input name="email" className="form-control"value={formData.email} onChange={handleChange} placeholder="your@email.com" />
+                <input
+				  type="email"
+				  name="email"
+				  value={formData.email}
+				  onChange={handleChange}
+				  className="form-control"
+				  placeholder="your@email.com"
+				/>
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="400">
