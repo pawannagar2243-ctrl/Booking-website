@@ -154,12 +154,12 @@ const handleSubmit = async (e) => {
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaPhoneAlt color="#ff7a59" />
-                (+44) 445 444 49
+                (+91) 8239537689
               </p>
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaEnvelope color="#ff7a59" />
-                mail@yourmail.com
+                pawannagar2243@gmail.com
               </p>
 
             </div>
