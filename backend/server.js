@@ -11,7 +11,9 @@ app.use(express.json());
 
 // 🔥 Email transporter
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,          // ✅ 465 ki jagah 587
+  secure: false,      // ✅ false rakho (important)
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
