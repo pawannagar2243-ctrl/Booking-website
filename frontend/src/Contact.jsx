@@ -38,10 +38,14 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  console.log("Submitting:", formData); // 👈 DEBUG
+  console.log("Submitting:", formData);
 
-  // ✅ REQUIRED FIELD CHECK
-  if (!formData.firstName || !formData.email || !formData.message) {
+  // 🚨 STOP EMPTY SUBMIT
+  if (
+    !formData.firstName.trim() ||
+    !formData.email.trim() ||
+    !formData.message.trim()
+  ) {
     showToast("Please fill required fields ❌", "error");
     return;
   }
@@ -56,7 +60,6 @@ const handleSubmit = async (e) => {
     });
 
     const data = await res.json();
-    console.log("Response data:", data);
 
     if (data.success) {
       showToast("Message Sent ✅", "success");
@@ -68,6 +71,7 @@ const handleSubmit = async (e) => {
         email: "",
         message: "",
       });
+
     } else {
       showToast(data.msg || "Error ❌", "error");
     }
@@ -179,18 +183,18 @@ const handleSubmit = async (e) => {
               <div className="row mb-3">
                 <div className="col" data-aos="fade-down">
                  <label className="mb-3">First Name</label>
-                  <input name="firstName" onChange={handleChange} value={formData.firstName}  className="form-control" />
+                  <input name="firstName" onChange={handleChange} value={formData.firstName}  className="form-control"required  />
                 </div>
 
                 <div className="col" data-aos="fade-down" data-aos-delay="100">
                   <label className="mb-3">Last Name</label>
-                  <input name="lastName" onChange={handleChange}value={formData.lastName} className="form-control" />
+                  <input name="lastName" onChange={handleChange}value={formData.lastName} className="form-control"required  />
                 </div>
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="200">
                 <label className="mb-3">Subject</label>
-                <input name="subject"value={formData.subject} onChange={handleChange} className="form-control" />
+                <input name="subject"value={formData.subject} onChange={handleChange} className="form-control"required  />
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="300">
@@ -202,6 +206,7 @@ const handleSubmit = async (e) => {
 				  onChange={handleChange}
 				  className="form-control"
 				  placeholder="your@email.com"
+				  required 
 				/>
               </div>
 
@@ -214,6 +219,7 @@ const handleSubmit = async (e) => {
 				  value={formData.message}
 				  onChange={handleChange}
                   placeholder="Enter your message here"
+				  required 
                 ></textarea>
               </div>
 			<div className="d-flex justify-content-center">
