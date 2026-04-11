@@ -125,7 +125,7 @@ const handleSubmit = async (e) => {
 
           {/* LEFT SIDE */}
           <div
-            className="col-md-6 d-flex flex-column justify-content-center p-3"
+            className="col-md-6 d-flex flex-column justify-content-center "
             style={{ background: "#ffff" }}
             
           >
@@ -133,7 +133,7 @@ const handleSubmit = async (e) => {
               Let's Get In Touch
             </h2>
 
-            <div className="mt-4 w-100"data-aos="fade-right">
+            <div className="mt-4"data-aos="fade-right">
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaMapMarkerAlt color="#ff7a59" />
@@ -142,12 +142,12 @@ const handleSubmit = async (e) => {
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaPhoneAlt color="#ff7a59" />
-                (+91) 8239537689
+                (+44) 445 444 49
               </p>
 
               <p className="d-flex align-items-center gap-3 fs-5">
-                <FaEnvelope color="#ff7a59"className="" />
-                pawannagar2243@gmail.com
+                <FaEnvelope color="#ff7a59" />
+                mail@yourmail.com
               </p>
 
             </div>
@@ -169,7 +169,7 @@ const handleSubmit = async (e) => {
 
             <form onSubmit={handleSubmit}>
               <div className="row mb-3">
-                <div className="col" data-aos="fade-down"data-aos-delay="100">
+                <div className="col" data-aos="fade-down">
                  <label htmlFor="firstName">First Name</label>
                   <input name="firstName" onChange={handleChange} value={formData.firstName}  className="form-control" />
                 </div>
@@ -217,14 +217,14 @@ const handleSubmit = async (e) => {
     </section>
 	<section className="map-section">
 	  <div className="container-fluid p-0">
-		  <iframe
-			  src="https://www.google.com/maps?q=24.4339432,75.9863679&output=embed"
-			  width="100%"
-			  height="400"
-			  style={{ border: 0 }}
-			  allowFullScreen=""
-			  loading="lazy"
-			></iframe>
+		<iframe
+		  src="https://www.google.com/maps?q=Griffith+Observatory&output=embed"
+		  loading="lazy"
+		  width="100%"
+		  height="400"
+		  style={{ border: 0 }}
+		  allowFullScreen=""
+		></iframe>
 	  </div>
 	</section>
 	</>
