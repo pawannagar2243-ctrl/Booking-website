@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SEO from "./SEO";
 function Contact() {
 
-  const [toast, setToast] = useState(null);
+  const [toastData, setToastData] = useState(null);
   const showToast = (message, type = "success") => setToast({ message, type }); 
   
   useEffect(() => {
