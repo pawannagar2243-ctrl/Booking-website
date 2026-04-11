@@ -46,8 +46,9 @@ const handleSubmit = async (e) => {
       },
       body: JSON.stringify(formData),
     });
-
+ console.log("Response status:", res.status); // 👈 ADD
     const data = await res.json();
+	   console.log("Response data:", data); // 👈 ADD
 
 	  if (data.success) {
 	showToast("Message Sent ✅", "success");
@@ -66,6 +67,7 @@ const handleSubmit = async (e) => {
 	}
 
 	  } catch (error) {
+	  console.log("Error:", error); // 👈 ADD
       showToast("Server error ❌", "error");
       }  
 	};
