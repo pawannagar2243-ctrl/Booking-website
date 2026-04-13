@@ -17,17 +17,17 @@ app.post("/contact", async (req, res) => {
   const { firstName, lastName, subject, email, message } = req.body;
 
   try {
-    await resend.emails.send({
-    from: "Contact Form <onboarding@resend.dev>",
-    to: "pawannagar2243@gmail.com",
-    subject: subject || "New Message",
-    html: `
-      <h3>New Contact</h3>
-      <p>Name: ${firstName} ${lastName}</p>
-      <p>Email: ${email}</p>
-      <p>Message: ${message}</p>
-    `,
-  });
+   await resend.emails.send({
+  from: "Booking Website <onboarding@resend.dev>",
+  to: "pawannagar2243@gmail.com",
+  subject: subject || "New Message",
+  html: `
+    <h3>New Contact</h3>
+    <p>Name: ${firstName} ${lastName}</p>
+    <p>Email: ${email}</p>
+    <p>Message: ${message}</p>
+  `,
+});
     res.json({ success: true });
 
   } catch (err) {
