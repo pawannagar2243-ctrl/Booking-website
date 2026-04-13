@@ -11,76 +11,70 @@ import "react-toastify/dist/ReactToastify.css";
 import SEO from "./SEO";
 function Contact() {
 
-  const [toast, setToast] = useState(null);
-  const showToast = (message, type = "success") => setToast({ message, type }); 
-  
+  // ✅ FIX: toast rename (conflict solved)
+  const [toastData, setToastData] = useState(null);
+  const showToast = (message, type = "success") =>
+    setToastData({ message, type });
+
   useEffect(() => {
-  AOS.init({
-    duration: 1000,
-    once: false,   // 🔥 scroll pe baar-baar chalega
-    offset: 120,   // scroll par thoda delay se trigger
-  });
-  AOS.refresh();
-}, []);
-
-const [formData, setFormData] = useState({
-  firstName: "",
-  lastName: "",
-  subject: "",
-  email: "",
-  message: "",
-});
-
-const handleChange = (e) => {
-  setFormData({ ...formData, [e.target.name]: e.target.value });
-};
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  console.log("Submitting:", formData);
-
-  // 🚨 STOP EMPTY SUBMIT
-  if (
-    !formData.firstName.trim() ||
-    !formData.email.trim() ||
-    !formData.message.trim()
-  ) {
-    showToast("Please fill required fields ❌", "error");
-    return;
-  }
-
-  try {
-    const res = await fetch("https://booking-website-1-oq4p.onrender.com/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 120,
     });
+    AOS.refresh();
+  }, []);
 
-    const data = await res.json();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    subject: "",
+    email: "",
+    message: "",
+  });
 
-    if (data.success) {
-      showToast("Message Sent ✅", "success");
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-      setFormData({
-        firstName: "",
-        lastName: "",
-        subject: "",
-        email: "",
-        message: "",
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("https://booking-website-1-oq4p.onrender.com/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-    } else {
-      showToast(data.msg || "Error ❌", "error");
-    }
+      const data = await res.json();
+      console.log("Response:", data);
 
-  } catch (error) {
-    console.log("Error:", error);
-    showToast("Server error ❌", "error");
-  }
-};
+      if (data.success) {
+        showToast("Message Sent ✅", "success");
+
+        // ✅ form reset fix
+        setFormData({
+          firstName: "",
+          lastName: "",
+          subject: "",
+          email: "",
+          message: "",
+        });
+
+        e.target.reset(); // 🔥 IMPORTANT
+      } else {
+        showToast(data.msg || "Error ❌", "error");
+      }
+
+    } catch (error) {
+      console.log("Error:", error);
+      showToast("Server error ❌", "error");
+    }
+  };
+
   return (
     <>
 	<SEO 
@@ -183,44 +177,28 @@ const handleSubmit = async (e) => {
               <div className="row mb-3">
                 <div className="col" data-aos="fade-down">
                  <label className="mb-3">First Name</label>
-                  <input name="firstName" onChange={handleChange} value={formData.firstName}  className="form-control"required  />
+                 <input name="firstName" onChange={handleChange} value={formData.firstName} placeholder="First Name" className="form-control mb-2" />
                 </div>
 
                 <div className="col" data-aos="fade-down" data-aos-delay="100">
                   <label className="mb-3">Last Name</label>
-                  <input name="lastName" onChange={handleChange}value={formData.lastName} className="form-control"required  />
+                   <input name="lastName" onChange={handleChange} value={formData.lastName} placeholder="Last Name" className="form-control mb-2" />
                 </div>
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="200">
                 <label className="mb-3">Subject</label>
-                <input name="subject"value={formData.subject} onChange={handleChange} className="form-control"required  />
+                <input name="subject" onChange={handleChange} value={formData.subject} placeholder="Subject" className="form-control mb-2" />
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="300">
                 <label className="mb-3">Your e-mail:</label>
-                <input
-				  type="email"
-				  name="email"
-				  value={formData.email}
-				  onChange={handleChange}
-				  className="form-control"
-				  placeholder="your@email.com"
-				  required 
-				/>
+                 <input type="email" name="email" onChange={handleChange} value={formData.email} placeholder="your@email.com" className="form-control mb-2" />
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="400">
                 <label className="mb-3">Message content:</label>
-                <textarea
-                  className="form-control"
-				  name="message"
-                  rows="5"
-				  value={formData.message}
-				  onChange={handleChange}
-                  placeholder="Enter your message here"
-				  required 
-                ></textarea>
+                <textarea name="message" onChange={handleChange} value={formData.message} placeholder="Enter your message here" className="form-control mb-2"></textarea>
               </div>
 			<div className="d-flex justify-content-center">
             <button
