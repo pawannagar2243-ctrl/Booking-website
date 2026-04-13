@@ -38,10 +38,10 @@ app.post("/contact", async (req, res) => {
 });
 
     res.json({ success: true });
-  } catch (err) {
-    console.log(err);
-    res.json({ success: false });
-  }
+  }catch (err) {
+  console.log("Mail Error:", err);
+  res.json({ success: false, msg: "Email not sent" });
+}
 });
 
 const PORT = process.env.PORT || 5000;
