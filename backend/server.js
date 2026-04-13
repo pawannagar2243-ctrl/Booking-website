@@ -1,5 +1,6 @@
 require("dotenv").config();
-
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
@@ -20,9 +21,9 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  family: 4, // 🔥 IMPORTANT: force IPv4
+  family: 4,        // 🔥 force IPv4
+  connectionTimeout: 10000,
 });
-
 transporter.verify(function (error, success) {
   if (error) {
     console.log("SMTP ERROR:", error);
@@ -36,19 +37,25 @@ app.post("/contact", async (req, res) => {
   const { firstName, lastName, subject, email, message } = req.body;
 
   try {
- await transporter.sendMail({
-  from: process.env.EMAIL_USER,
-  to: process.env.EMAIL_USER,
-  subject: subject || "New Contact Message",
-  replyTo: email,
-  html: `
-    <h3>New Contact Form Message</h3>
-    <p><b>Name:</b> ${firstName} ${lastName}</p>
-    <p><b>Email:</b> ${email}</p>
-    <p><b>Message:</b> ${message}</p>
-  `,
-});
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: process.env.EMAIL_USER,
+      subject: subject || "Contact Form",
+      html: `
+        <h3>New Message</h3>
+        <p>${firstName} ${lastName}</p>
+        <p>${email}</p>
+        <p>${message}</p>
+      `,
+    });
 
+    res.json({ success: true });
+
+  } catch (err) {
+    console.log(err);
+    res.json({ success: false, msg: err.message });
+  }
+});
     res.json({ success: true });
   }catch (err) {
   console.log("🔥 FULL EMAIL ERROR:");
