@@ -82,13 +82,13 @@ function Contact() {
 	  description="Get in touch with us for wedding, birthday, and family photography bookings. Contact our professional photography team today."
 	/>
 	
-	{toast && (
-	  <Toast
-		message={toast.message}
-		type={toast.type}
-		onClose={() => setToast(null)}
-	  />
-	)}
+	{toastData && (
+  <Toast
+    message={toastData.message}
+    type={toastData.type}
+    onClose={() => setToastData(null)} // ✅ FIXED
+  />
+)}
      <section
       className="d-flex align-items-center"
       style={{
