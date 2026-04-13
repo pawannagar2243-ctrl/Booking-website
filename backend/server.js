@@ -48,8 +48,14 @@ app.post("/contact", async (req, res) => {
 
     res.json({ success: true });
   }catch (err) {
-  console.log("Mail Error:", err);
-  res.json({ success: false, msg: "Email not sent" });
+  console.log("🔥 FULL EMAIL ERROR:");
+  console.log(err);
+  console.log(err?.response?.data || err.message);
+
+  res.json({ 
+    success: false, 
+    msg: err.message 
+  });
 }
 });
 app.get("/test", async (req, res) => {
