@@ -18,17 +18,16 @@ app.post("/contact", async (req, res) => {
 
   try {
     await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: process.env.EMAIL_USER,
-      subject: subject || "Contact Form",
-      html: `
-        <h3>New Message</h3>
-        <p><b>Name:</b> ${firstName} ${lastName}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Message:</b> ${message}</p>
-      `,
-    });
-
+    from: "Contact Form <onboarding@resend.dev>",
+    to: "pawannagar2243@gmail.com",
+    subject: subject || "New Message",
+    html: `
+      <h3>New Contact</h3>
+      <p>Name: ${firstName} ${lastName}</p>
+      <p>Email: ${email}</p>
+      <p>Message: ${message}</p>
+    `,
+  });
     res.json({ success: true });
 
   } catch (err) {
