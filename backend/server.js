@@ -25,10 +25,11 @@ app.post("/contact", async (req, res) => {
   const { firstName, lastName, subject, email, message } = req.body;
 
   try {
-   await transporter.sendMail({
-  from: process.env.EMAIL_USER, // 🔥 better practice
+ await transporter.sendMail({
+  from: process.env.EMAIL_USER,
   to: process.env.EMAIL_USER,
-  subject: subject,
+  subject: subject || "New Contact Message",
+  replyTo: email,
   html: `
     <h3>New Contact Form Message</h3>
     <p><b>Name:</b> ${firstName} ${lastName}</p>
