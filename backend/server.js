@@ -6,18 +6,19 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+}));
 app.use(express.json());
 
 // 🔥 Email transporter
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,          // ✅ 465 ki jagah 587
-  secure: false,      // ✅ false rakho (important)
+  service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  debug: true,
 });
 
 // 🔥 API route
@@ -42,6 +43,21 @@ app.post("/contact", async (req, res) => {
   console.log("Mail Error:", err);
   res.json({ success: false, msg: "Email not sent" });
 }
+});
+app.get("/test", async (req, res) => {
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: "Test Mail",
+      text: "Working bro 🔥",
+    });
+
+    res.send("Mail Sent ✅");
+  } catch (err) {
+    console.log(err);
+    res.send("Error ❌");
+  }
 });
 
 const PORT = process.env.PORT || 5000;
