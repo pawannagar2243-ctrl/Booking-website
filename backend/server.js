@@ -1,38 +1,18 @@
 require("dotenv").config();
-const { Resend } = require("resend");
-const resend = new Resend(process.env.RESEND_API_KEY);
+
 const express = require("express");
 const cors = require("cors");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 const app = express();
 
-app.use(cors({
-  origin: "*",
-}));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// 🔥 Email transporter
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  family: 4,        // 🔥 force IPv4
-  connectionTimeout: 10000,
-});
-transporter.verify(function (error, success) {
-  if (error) {
-    console.log("SMTP ERROR:", error);
-  } else {
-    console.log("SMTP READY ✅");
-  }
-});
+// Resend setup
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// 🔥 API route
+// ✅ CONTACT API
 app.post("/contact", async (req, res) => {
   const { firstName, lastName, subject, email, message } = req.body;
 
@@ -43,45 +23,23 @@ app.post("/contact", async (req, res) => {
       subject: subject || "Contact Form",
       html: `
         <h3>New Message</h3>
-        <p>${firstName} ${lastName}</p>
-        <p>${email}</p>
-        <p>${message}</p>
+        <p><b>Name:</b> ${firstName} ${lastName}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Message:</b> ${message}</p>
       `,
     });
 
     res.json({ success: true });
 
   } catch (err) {
-    console.log(err);
+    console.log("EMAIL ERROR:", err);
     res.json({ success: false, msg: err.message });
   }
 });
-    res.json({ success: true });
-  }catch (err) {
-  console.log("🔥 FULL EMAIL ERROR:");
-  console.log(err);
-  console.log(err?.response?.data || err.message);
 
-  res.json({ 
-    success: false, 
-    msg: err.message 
-  });
-}
-});
-app.get("/test", async (req, res) => {
-  try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: "Test Mail",
-      text: "Working bro 🔥",
-    });
-
-    res.send("Mail Sent ✅");
-  } catch (err) {
-    console.log(err);
-    res.send("Error ❌");
-  }
+// ✅ TEST ROUTE
+app.get("/test", (req, res) => {
+  res.send("Server is working 🚀");
 });
 
 const PORT = process.env.PORT || 5000;
