@@ -12,35 +12,45 @@ app.use(express.json());
 // Resend setup
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// ✅ CONTACT API
+// ✅ CONTACT API (FIXED)
 app.post("/contact", async (req, res) => {
   const { firstName, lastName, subject, email, message } = req.body;
 
   try {
-   await resend.emails.send({
-  from: "Booking Website <onboarding@resend.dev>",
-  to: "pawannagar2243@gmail.com",
-  subject: subject || "New Message",
-  html: `
-    <h3>New Contact</h3>
-    <p>Name: ${firstName} ${lastName}</p>
-    <p>Email: ${email}</p>
-    <p>Message: ${message}</p>
-  `,
-});
+    // Resend SDK returns { data, error }, it does not throw on API errors usually
+    const { data, error } = await resend.emails.send({
+      from: "Booking Website <onboarding@resend.dev>", 
+      // NOTE: 'onboarding@resend.dev' se sirf apne hi email (Resend account wala) pe mail jayega. 
+      // Agar dusre ko bhejna hai toh domain verify karein.
+      to: "pawannagar2243@gmail.com", 
+      subject: subject || "New Message",
+      html: `
+        <h3>New Contact Request</h3>
+        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `,
+    });
+
+    // ✅ YEH CHECK BOHUT ZAROORI HAI
+    if (error) {
+      console.error("Resend API Error:", error);
+      return res.status(400).json({ success: false, msg: error.message });
+    }
+
+    console.log("Email Sent Success:", data);
     res.json({ success: true });
 
   } catch (err) {
-    console.log("EMAIL ERROR:", err);
-    res.json({ success: false, msg: err.message });
+    // Network ya coding errors ke liye
+    console.log("Server Crash Error:", err);
+    res.status(500).json({ success: false, msg: err.message });
   }
 });
 
-// ✅ TEST ROUTE
 app.get("/test", (req, res) => {
   res.send("Server is working 🚀");
 });
 
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
