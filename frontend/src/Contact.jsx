@@ -11,64 +11,64 @@ import "react-toastify/dist/ReactToastify.css";
 import SEO from "./SEO";
 function Contact() {
 
-  // ✅ FIX: toast rename (conflict solved)
-  const [toastData, setToastData] = useState(null);
-  const showToast = (message, type = "success") =>
-    setToastData({ message, type });
-
+  const [toast, setToast] = useState(null);
+  const showToast = (message, type = "success") => setToast({ message, type }); 
+  
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: false,
-      offset: 120,
-    });
-    AOS.refresh();
-  }, []);
-
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    subject: "",
-    email: "",
-    message: "",
+  AOS.init({
+    duration: 1000,
+    once: false,   // 🔥 scroll pe baar-baar chalega
+    offset: 120,   // scroll par thoda delay se trigger
   });
+  AOS.refresh();
+}, []);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const [formData, setFormData] = useState({
+  firstName: "",
+  lastName: "",
+  subject: "",
+  email: "",
+  message: "",
+});
 
-// ... (Contact.js ka code)
+const handleChange = (e) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await fetch("https://booking-website-1-oq4p.onrender.com/contact", {
+    const res = await fetch("http://localhost:5000/contact", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(formData),
     });
 
     const data = await res.json();
-    console.log("Response:", data); // Yahan pura object dikh raha hai
 
-    if (data.success) {
-      showToast("Message Sent ✅", "success");
-      setFormData({ firstName: "", lastName: "", subject: "", email: "", message: "" });
-      e.target.reset();
-    } else {
-      // Agar msg nahi hai toh generic error dikhao
-      showToast(data.msg || "Unknown Error Occurred ❌", "error");
-    }
+	  if (data.success) {
+	showToast("Message Sent ✅", "success");
 
-  } catch (error) {
-    console.log("Error:", error);
-    showToast("Server error ❌", "error");
-  }
-};
+	  // 🔥 FORM RESET
+	  setFormData({
+		firstName: "",
+		lastName: "",
+		subject: "",
+		email: "",
+		message: "",
+	  });
 
-// ... (baki code)
+	} else {
+	showToast("Error ❌", "error");
+	}
 
+	  } catch (error) {
+      showToast("Server error ❌", "error");
+      }  
+	};
   return (
     <>
 	<SEO 
@@ -76,13 +76,13 @@ const handleSubmit = async (e) => {
 	  description="Get in touch with us for wedding, birthday, and family photography bookings. Contact our professional photography team today."
 	/>
 	
-	{toastData && (
-  <Toast
-    message={toastData.message}
-    type={toastData.type}
-    onClose={() => setToastData(null)} // ✅ FIXED
-  />
-)}
+	{toast && (
+	  <Toast
+		message={toast.message}
+		type={toast.type}
+		onClose={() => setToast(null)}
+	  />
+	)}
      <section
       className="d-flex align-items-center"
       style={{
@@ -142,7 +142,7 @@ const handleSubmit = async (e) => {
 
               <p className="d-flex align-items-center gap-3 fs-5">
                 <FaPhoneAlt color="#ff7a59" />
-                (+91) 8239537689
+                (+91)8239537689
               </p>
 
               <p className="d-flex align-items-center gap-3 fs-5">
@@ -170,29 +170,36 @@ const handleSubmit = async (e) => {
             <form onSubmit={handleSubmit}>
               <div className="row mb-3">
                 <div className="col" data-aos="fade-down">
-                 <label className="mb-3">First Name</label>
-                 <input name="firstName" onChange={handleChange} value={formData.firstName} placeholder="First Name" className="form-control mb-2" />
+                 <label htmlFor="firstName">First Name</label>
+                  <input name="firstName" onChange={handleChange} value={formData.firstName}  className="form-control" />
                 </div>
 
                 <div className="col" data-aos="fade-down" data-aos-delay="100">
-                  <label className="mb-3">Last Name</label>
-                   <input name="lastName" onChange={handleChange} value={formData.lastName} placeholder="Last Name" className="form-control mb-2" />
+                  <label htmlFor="lastName">Last Name</label>
+                  <input name="lastName" onChange={handleChange}value={formData.lastName} className="form-control" />
                 </div>
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="200">
                 <label className="mb-3">Subject</label>
-                <input name="subject" onChange={handleChange} value={formData.subject} placeholder="Subject" className="form-control mb-2" />
+                <input name="subject"value={formData.subject} onChange={handleChange} className="form-control" />
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="300">
                 <label className="mb-3">Your e-mail:</label>
-                 <input type="email" name="email" onChange={handleChange} value={formData.email} placeholder="your@email.com" className="form-control mb-2" />
+                <input name="email" className="form-control"value={formData.email} onChange={handleChange} placeholder="your@email.com" />
               </div>
 
               <div className="mb-3" data-aos="fade-down" data-aos-delay="400">
                 <label className="mb-3">Message content:</label>
-                <textarea name="message" onChange={handleChange} value={formData.message} placeholder="Enter your message here" className="form-control mb-2"></textarea>
+                <textarea
+                  className="form-control"
+				  name="message"
+                  rows="5"
+				  value={formData.message}
+				  onChange={handleChange}
+                  placeholder="Enter your message here"
+                ></textarea>
               </div>
 			<div className="d-flex justify-content-center">
             <button
@@ -210,7 +217,7 @@ const handleSubmit = async (e) => {
     </section>
 	<section className="map-section">
 	  <div className="container-fluid p-0">
-		<iframe
+        <iframe
 		  src="https://www.google.com/maps?q=24.4339432,75.9863679&output=embed"
 		  loading="lazy"
 		  width="100%"
