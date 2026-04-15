@@ -18,19 +18,18 @@ app.post("/contact", async (req, res) => {
 
   try {
     // Resend SDK returns { data, error }, it does not throw on API errors usually
-    const { data, error } = await resend.emails.send({
-      from: "Booking Website <onboarding@resend.dev>", 
-      // NOTE: 'onboarding@resend.dev' se sirf apne hi email (Resend account wala) pe mail jayega. 
-      // Agar dusre ko bhejna hai toh domain verify karein.
-      to: "pawannagar2243@gmail.com", 
-      subject: subject || "New Message",
-      html: `
-        <h3>New Contact Request</h3>
-        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
-    });
+    const { data, error } =await resend.emails.send({
+  from: "Booking Website <onboarding@resend.dev>",
+  // ⬇️ YAHAN APNA RESEND LOGIN EMAIL DAALO (JO ABHI WORK KAREGA)
+  to: "APNA_RESEND_LOGIN_EMAIL@gmail.com", 
+  subject: subject || "New Message",
+  html: `
+    <h3>New Contact</h3>
+    <p>Name: ${firstName} ${lastName}</p>
+    <p>Email: ${email}</p>
+    <p>Message: ${message}</p>
+  `,
+});
 
     // ✅ YEH CHECK BOHUT ZAROORI HAI
     if (error) {
