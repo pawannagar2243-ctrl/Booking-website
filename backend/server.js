@@ -20,8 +20,8 @@ app.post("/contact", async (req, res) => {
     // Resend SDK returns { data, error }, it does not throw on API errors usually
     const { data, error } =await resend.emails.send({
   from: "Booking Website <onboarding@resend.dev>",
-  // ⬇️ YAHAN APNA RESEND LOGIN EMAIL DAALO (JO ABHI WORK KAREGA)
-  to: "APNA_RESEND_LOGIN_EMAIL@gmail.com", 
+  // ⬇️ YAHAN APNA LOGIN EMAIL DAALO (JO RESEND ACCOUNT KA OWNER HAI)
+  to: "pawannagar2243@gmail.com", 
   subject: subject || "New Message",
   html: `
     <h3>New Contact</h3>
