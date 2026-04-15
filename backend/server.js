@@ -2,53 +2,46 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 
 const app = express();
 
-app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use(express.json());
 
-// Resend setup
-const resend = new Resend(process.env.RESEND_API_KEY);
+// 🔥 Email transporter
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
-// ✅ CONTACT API (FIXED)
+// 🔥 API route
 app.post("/contact", async (req, res) => {
   const { firstName, lastName, subject, email, message } = req.body;
 
   try {
-    // Resend SDK returns { data, error }, it does not throw on API errors usually
-    const { data, error } =await resend.emails.send({
+   await transporter.sendMail({
   from: process.env.EMAIL_USER, // 🔥 better practice
   to: process.env.EMAIL_USER,
-  subject: subject || "New Message",
+  subject: subject,
   html: `
-    <h3>New Contact</h3>
-    <p>Name: ${firstName} ${lastName}</p>
-    <p>Email: ${email}</p>
-    <p>Message: ${message}</p>
+    <h3>New Contact Form Message</h3>
+    <p><b>Name:</b> ${firstName} ${lastName}</p>
+    <p><b>Email:</b> ${email}</p>
+    <p><b>Message:</b> ${message}</p>
   `,
 });
 
-    // ✅ YEH CHECK BOHUT ZAROORI HAI
-    if (error) {
-      console.error("Resend API Error:", error);
-      return res.status(400).json({ success: false, msg: error.message });
-    }
-
-    console.log("Email Sent Success:", data);
     res.json({ success: true });
-
   } catch (err) {
-    // Network ya coding errors ke liye
-    console.log("Server Crash Error:", err);
-    res.status(500).json({ success: false, msg: err.message });
+    console.log(err);
+    res.json({ success: false });
   }
 });
 
-app.get("/test", (req, res) => {
-  res.send("Server is working 🚀");
-});
-
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
