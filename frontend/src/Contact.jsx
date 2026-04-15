@@ -37,43 +37,37 @@ function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+// ... (Contact.js ka code)
 
-    try {
-      const res = await fetch("https://booking-website-1-oq4p.onrender.com/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-      const data = await res.json();
-      console.log("Response:", data);
+  try {
+    const res = await fetch("https://booking-website-1-oq4p.onrender.com/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      if (data.success) {
-        showToast("Message Sent ✅", "success");
+    const data = await res.json();
+    console.log("Response:", data); // Yahan pura object dikh raha hai
 
-        // ✅ form reset fix
-        setFormData({
-          firstName: "",
-          lastName: "",
-          subject: "",
-          email: "",
-          message: "",
-        });
-
-        e.target.reset(); // 🔥 IMPORTANT
-      } else {
-        showToast(data.msg || "Error ❌", "error");
-      }
-
-    } catch (error) {
-      console.log("Error:", error);
-      showToast("Server error ❌", "error");
+    if (data.success) {
+      showToast("Message Sent ✅", "success");
+      setFormData({ firstName: "", lastName: "", subject: "", email: "", message: "" });
+      e.target.reset();
+    } else {
+      // Agar msg nahi hai toh generic error dikhao
+      showToast(data.msg || "Unknown Error Occurred ❌", "error");
     }
-  };
+
+  } catch (error) {
+    console.log("Error:", error);
+    showToast("Server error ❌", "error");
+  }
+};
+
+// ... (baki code)
 
   return (
     <>
